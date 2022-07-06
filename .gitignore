@@ -1,0 +1,10 @@
+vendor
+output
+.vscode
+*.db
+server
+.env.json
+*.dat*
+bin/reflex
+mariadb.md
+upload

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Landing Page</h1>
+<a href='/auth/google'>Login with Google</a>
+<br>
+<a href='/auth/github'>Login with Github</a>
+<br>
+<br>
+<!-- <form action="/upload" method="POST" enctype="multipart/form-data"> -->
+<form action="/upload" method="POST">
+    <input multiple type="file" name="files" id="files">
+    <button type="submit">Save</button>
+</form>
+<button onclick="jssave()">js save</button>
+</body>
+<script>
+    function jssave(){
+        var input = document.querySelector('#files')
+        var data = new FormData()
+        for (const file of input.files) {
+            data.append('files',file,file.name)
+        }
+
+        fetch('/upload', {
+        method: 'POST',
+        body: data
+        })
+
+    }
+
+</script>
+</html>

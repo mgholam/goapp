@@ -1,0 +1,30 @@
+# vscode rest/client addin test file
+ @server = http://localhost:3000
+
+# downloader vm
+# @server = http://192.168.43.142:3000/api
+
+# pi
+# @server = http://192.168.43.244:3000/api
+
+### get all books
+GET {{server}}/book
+### get json of orginial post by id
+GET {{server}}/book/doc/10
+### get book by id
+GET {{server}}/book/2
+###
+POST {{server}}/posts
+Content-Type: application/json
+
+{"name" : "dune" , "author" : "herbert", "rating": 5}
+###
+POST {{server}}/book
+Content-Type: application/json
+
+{"name" : "lord of the rings" , "author" : "tolkien", "rating": 5}
+###
+DELETE {{server}}/book/3
+###
+GET {{server}}/book/tt
+
