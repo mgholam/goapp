@@ -5,8 +5,8 @@ Simple extensible project for WebApp or API based on `chi` .
 ## Building
 
 - `go mod tidy` 
-- install `reflex` auto recompiler 
-- `rest client` for visual studio to handle and run `*.http` files
+- install `reflex` auto recompile on file change
+- `rest client` for visual studio to handle and run `*.http` files for testing endpoints
 
 ## Architecture
 
