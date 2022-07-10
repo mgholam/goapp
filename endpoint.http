@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {"name" : "lord of the rings" , "author" : "tolkien", "rating": 5}
 ###
-DELETE {{server}}/book/3
+DELETE {{server}}/book/10
 ###
 GET {{server}}/book/tt
 

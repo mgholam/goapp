@@ -6,7 +6,7 @@ import (
 	"goapp/src/storagefile"
 	"os"
 
-	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/v5"
 )
 
 type App struct {

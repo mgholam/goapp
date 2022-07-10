@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/v5"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -40,7 +40,10 @@ func (m *Module) Stop() {
 
 func (m *Module) initDatabase() {
 	var err error
-	m.dbConn, err = gorm.Open(sqlite.Open("data/books.db?"), &gorm.Config{})
+	m.dbConn, err = gorm.Open(sqlite.Open("data/books.db?cache=shared&_pragma=journal_mode(wal)"), &gorm.Config{
+		SkipDefaultTransaction: true,
+		PrepareStmt:            true,
+	})
 	if err != nil {
 		panic("failed to connect database")
 	}

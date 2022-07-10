@@ -4,7 +4,7 @@ Simple extensible project for WebApp or API based on `chi` .
 
 ## Building
 
-- `go mod tidy` 
+- `go mod tidy`
 - install `reflex` auto recompile on file change
 - `rest client` for visual studio to handle and run `*.http` files for testing endpoints
 
@@ -37,7 +37,7 @@ package test
 import (
 	"goapp/src/entities"
 	"log"
-	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/v5"
 )
 
 type Module struct {

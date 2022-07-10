@@ -4,7 +4,7 @@ import (
 	"goapp/src/entities"
 	"log"
 
-	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/v5"
 )
 
 type Module struct {
