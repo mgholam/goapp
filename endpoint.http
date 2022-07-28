@@ -14,7 +14,7 @@ GET {{server}}/book/doc/10
 ### get book by id
 GET {{server}}/book/2
 ###
-POST {{server}}/posts
+POST {{server}}/upload
 Content-Type: application/json
 
 {"name" : "dune" , "author" : "herbert", "rating": 5}
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {"name" : "lord of the rings" , "author" : "tolkien", "rating": 5}
 ###
-DELETE {{server}}/book/10
+DELETE {{server}}/book/1
 ###
 GET {{server}}/book/tt
 

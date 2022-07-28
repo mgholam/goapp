@@ -99,3 +99,19 @@ func (m *Module) DoSomething() string {
 
 
 
+# Cross compiling
+
+Cross compiling in pure Golang is delightful, but doing so with the `sqlite` package is a nightmare, since you have to install all sorts of C compiler tool chains and rip your hair out in the process...
+
+Thankfully you can now use `zig` compiler for this which is a single install and supports multiple cpu's and architectures out of the box like Golang.
+
+All the working command line arguments are in `build.sh` for :
+
+- static linked linux
+- windows 386
+- windows x64
+
+The following platforms are failing to compile at the moment:
+
+- raspberry pi
+- mac os
