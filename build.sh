@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ANAME="goapp"
 # -------------------------------------------------------------
 echo "building linux..."
@@ -8,7 +10,6 @@ CC="zig cc -target native-native-musl" \
 CXX="zig cc -target native-native-musl" \
 go build -o output/${ANAME} -ldflags "-w -s" ./
 strip output/${ANAME}
-
 
 # -------------------------------------------------------------
 echo "building windows..."
@@ -53,7 +54,12 @@ CGO_ENABLED=1
 CC="zig cc -v -target arm-linux-musleabihf" \
 go build -o output/${ANAME}-arm -ldflags "-w -s" ./
 
-#GOOS=linux GOARCH=arm GOARM=6 CGO_ENABLED=1 CC=arm-linux-gnu-gcc go build --tags "libsqlite3 linux" -v -o output/gifibtest-arm -ldflags="-w -s -extld=$CC"
+# GOOS=linux \
+# GOARCH=arm \
+# GOARM=5 \
+# CGO_ENABLED=1 \
+# CC=arm-linux-gnu-gcc \
+# go build --tags "libsqlite3 linux" -v -o output/${ANAME}-arm -ldflags="-w -s -extld=$CC"
 
 #--- works with "github.com/glebarez/sqlite" driver
 # pure go sqlite

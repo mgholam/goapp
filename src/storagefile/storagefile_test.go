@@ -3,15 +3,15 @@ package storagefile_test
 import (
 	"encoding/json"
 	"fmt"
-	"goapp/src/storagefile"
 	"os"
 	"sync"
 
 	"syscall"
 	"testing"
 	"time"
+
 	// jsoniter "github.com/json-iterator/go"
-	// "github.com/mgholam/go-code/storagefile"
+	"github.com/mgholam/go-code/storagefile"
 )
 
 type Book struct {
@@ -65,6 +65,47 @@ func Test_speedstringonly(t *testing.T) {
 		}
 	}
 	fmt.Println("time : ", time.Since(dt))
+}
+
+func Test_iterate(t *testing.T) {
+
+	sf, e := storagefile.Open("iterate.dat")
+	if e != nil {
+		panic(e)
+	}
+	defer sf.Close()
+	defer func() {
+		os.Remove("iterate.dat")
+		os.Remove("iterate.dat.idx")
+	}()
+
+	b := Book{
+		// ID:     1,
+		Title:  "dune",
+		Author: "frank herbert",
+		Rating: 5,
+		Date:   time.Now(),
+	}
+	by, _ := json.Marshal(&b)
+
+	count := 100
+
+	fmt.Printf("saving %d ...\n", count)
+
+	for i := 0; i < count; i++ {
+		sf.Save("test", by)
+	}
+
+	var j int64 = 1
+
+	for hdr := range sf.Iterate() {
+		if hdr.Id != j {
+			t.Error("failed")
+			return
+		}
+		j++
+		fmt.Printf("%d : %v\r\n", hdr.Id, string(hdr.Data))
+	}
 }
 
 func Test_concurrent_write(t *testing.T) {

@@ -241,7 +241,7 @@ func (sf *StorageFile) saveHeader(dtype string, data []byte, skipsync bool) int6
 	return int64(hdr.Len() + len(data))
 }
 
-// GetHeader for the id
+// Get Header for the index in stroage file starts at 1
 func (sf *StorageFile) GetHeader(id int64) (*Header, error) {
 	sf.flush()
 
@@ -312,7 +312,7 @@ func (r *reader) getheader(id int64) (*Header, error) {
 	return &d, nil
 }
 
-// Get the "type" and data bytes for id
+// Get the "type" and data bytes for id starts at 1
 func (sf *StorageFile) Get(id int64) (string, []byte, error) {
 
 	h, e := sf.GetHeader(id)
@@ -322,7 +322,7 @@ func (sf *StorageFile) Get(id int64) (string, []byte, error) {
 	return h.Type, h.Data, nil
 }
 
-// Get the "type" and "string" values for id
+// Get the "type" and "string" values for id starts at 1
 func (sf *StorageFile) GetString(id int64) (string, string, error) {
 
 	h, e := sf.GetHeader(id)
@@ -332,6 +332,7 @@ func (sf *StorageFile) GetString(id int64) (string, string, error) {
 	return h.Type, string(h.Data), nil
 }
 
+// Close storage file
 func (sf *StorageFile) Close() {
 
 	sf.flush()
@@ -349,8 +350,29 @@ func (sf *StorageFile) Close() {
 	os.Remove(sf.filename + ".dirty")
 }
 
+// Count of items in storage file
 func (sf *StorageFile) Count() int64 {
 	return sf.count
+}
+
+// Iterate over data in strorage file returns a chan of Header.
+// * if you don't iterate to the end, close the channel
+func (sf *StorageFile) Iterate() chan *Header {
+	ch := make(chan *Header)
+	index := int64(1)
+	go func() {
+		defer close(ch)
+		for index <= sf.count {
+			h, e := sf.GetHeader(index)
+			if e != nil {
+				fmt.Println("iterate failed", e)
+				return
+			}
+			ch <- h
+			index++
+		}
+	}()
+	return ch
 }
 
 func (sf *StorageFile) rebuildIndex() error {
