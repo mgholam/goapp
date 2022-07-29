@@ -2,27 +2,26 @@
 
 ANAME="goapp"
 # -------------------------------------------------------------
-echo "building linux..."
+echo "building linux native..."
 
 GOOS=linux \
 CGO_ENABLED=1 \
 CC="zig cc -target native-native-musl" \
-CXX="zig cc -target native-native-musl" \
 go build -o output/${ANAME} -ldflags "-w -s" ./
 strip output/${ANAME}
+# -------------------------------------------------------------
+echo "building linux x64..."
+
+GOOS=linux \
+GOARCH=amd64 \
+CGO_ENABLED=1 \
+CC="zig cc -target x86_64-linux-musl" \
+go build -o output/${ANAME}-linux -ldflags "-w -s" ./
+strip output/${ANAME}-linux
 
 # -------------------------------------------------------------
 echo "building windows..."
 
-# # gcc
-# GOOS=windows \
-# GOARCH=386 \
-# CGO_ENABLED=1 \
-# CC=i686-w64-mingw32-g++ \
-# CC=i686-w64-mingw32-gcc \
-# go build -o output/${ANAME}386.exe -ldflags "-w -s" ./
-
-# zig
 CGO_ENABLED=1 \
 GOOS=windows \
 GOARCH=amd64 \
@@ -45,22 +44,11 @@ go build -o output/${ANAME}386-2.exe -ldflags "-w -s" ./
 # go build -o output/${ANAME}-darwin -ldflags "-w -s" ./
 
 # -------------------------------------------------------------
-echo "building pi..."
+echo "building pi zero w..."
 
 GOARM=5 \
 GOOS=linux \
 GOARCH=arm \
-CGO_ENABLED=1
-CC="zig cc -v -target arm-linux-musleabihf" \
-go build -o output/${ANAME}-arm -ldflags "-w -s" ./
-
-# GOOS=linux \
-# GOARCH=arm \
-# GOARM=5 \
-# CGO_ENABLED=1 \
-# CC=arm-linux-gnu-gcc \
-# go build --tags "libsqlite3 linux" -v -o output/${ANAME}-arm -ldflags="-w -s -extld=$CC"
-
-#--- works with "github.com/glebarez/sqlite" driver
-# pure go sqlite
-#GOOS=linux GOARCH=arm GOARM=5 go build -o output/${ANAME}-arm -ldflags "-w -s" ./
+CGO_ENABLED=1 \
+CC="zig cc -target arm-linux-musleabihf -march=arm1176jzf_s" \
+go build -o output/${ANAME}-pizw -ldflags "-w -s" ./
