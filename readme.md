@@ -110,7 +110,8 @@ All the working command line arguments are in `build.sh` for :
 - static linked linux
 - windows 386
 - windows x64
-- raspberry pi zero w
+- raspberry pi zero w (arm5)
+- android phone with termux (arm64)
 
 The following platforms are failing to compile at the moment:
 
