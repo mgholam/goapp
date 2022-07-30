@@ -3,11 +3,11 @@ module goapp
 go 1.18
 
 require (
+	github.com/go-chi/chi/v5 v5.0.7
 	github.com/google/uuid v1.3.0
 	github.com/mgholam/goauth v0.0.0-20220624165331-0a330d24d48d
 	gorm.io/driver/sqlite v1.2.6
 	gorm.io/gorm v1.22.5-0.20211210095019-adf8f70f06d9
-	github.com/go-chi/chi/v5 v5.0.7
 )
 
 require (
