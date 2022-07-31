@@ -6,6 +6,7 @@ import (
 	"goapp/src/modules/auth"
 	"goapp/src/modules/book"
 	"goapp/src/modules/test"
+	"goapp/src/myos"
 	"io"
 	"log"
 	"net/http"
@@ -135,6 +136,6 @@ func upload(w http.ResponseWriter, r *http.Request) {
 
 func makeDirectories() {
 
-	os.Mkdir("upload", 0755)
-	os.Mkdir("data", 0755)
+	myos.CreateDir("upload")
+	myos.CreateDir("data")
 }

@@ -20,11 +20,11 @@ var (
 
 type Header struct {
 	Id         int64     // insert position
-	Type       string    // type, path,...
+	Type       string    // type, path, key...
 	Date       time.Time // insert datetime
 	SkipSync   bool      // future feature skip sync
 	DataLength int32     // actual data length
-	Data       []byte
+	Data       []byte    // data, value ...
 	//	Guid       string
 }
 
@@ -86,7 +86,7 @@ func Open(filename string) (*StorageFile, error) {
 	} else if fileExists(filename) {
 		// check last 4 bytes of dat file == '||||' -> rebuild??
 		if !sf.checkLast() {
-			return nil, errors.New("data integrity error in file last record does not have a terminator sequence (use AddTerminator() at your own risk)")
+			return nil, errors.New("data integrity error in file, last record does not have a terminator sequence (use AddTerminator() at your own risk)")
 		}
 	}
 
