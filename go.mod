@@ -8,6 +8,7 @@ require (
 	github.com/mgholam/goauth v0.0.0-20220624165331-0a330d24d48d
 	gorm.io/driver/sqlite v1.2.6
 	gorm.io/gorm v1.22.5-0.20211210095019-adf8f70f06d9
+	github.com/mgholam/rdblite v0.0.0-20220815140134-cb26caafb71b
 )
 
 require (

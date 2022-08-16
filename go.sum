@@ -14,6 +14,8 @@ github.com/mattn/go-sqlite3 v1.14.9 h1:10HX2Td0ocZpYEjhilsuo6WWtUqttj2Kb0KtD86/K
 github.com/mattn/go-sqlite3 v1.14.9/go.mod h1:NyWgC/yNuGj7Q9rpYnZvas74GogHl5/Z4A/KQRfk6bU=
 github.com/mgholam/goauth v0.0.0-20220624165331-0a330d24d48d h1:lurnxCQdZcpoLhkWPtzFmhg6YwZgNrLllTtJXi/9IZQ=
 github.com/mgholam/goauth v0.0.0-20220624165331-0a330d24d48d/go.mod h1:x5DzRoOPoit/tP/1cZ3Dkburc3bFNgpCPzALUHbPrmg=
+github.com/mgholam/rdblite v0.0.0-20220815140134-cb26caafb71b h1:rzxZEwTHQ5+N0MB3YTVUmFZB8vIAgIDB7MRe77AeQNk=
+github.com/mgholam/rdblite v0.0.0-20220815140134-cb26caafb71b/go.mod h1:/7WvZQjV58WEp1RrJEglvSEg89gNKXlAlzKmHtDMdWo=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

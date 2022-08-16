@@ -1,13 +1,14 @@
 #!/bin/bash
 
 ANAME="goapp"
+ZIG="zig cc -static "
 # -------------------------------------------------------------
 echo "building linux native..."
 
 ON=${ANAME}
 GOOS=linux \
 CGO_ENABLED=1 \
-CC="zig cc -target native-native-musl" \
+CC="${ZIG} -target native-native-musl" \
 go build -o output/${ON} -ldflags "-w -s" ./
 strip output/${ON}
 
@@ -18,7 +19,7 @@ ON=${ANAME}-linux
 GOOS=linux \
 GOARCH=amd64 \
 CGO_ENABLED=1 \
-CC="zig cc -target x86_64-linux-musl" \
+CC="${ZIG} -target x86_64-linux-musl" \
 go build -o output/${ON} -ldflags "-w -s" ./
 strip output/${ON}
 
@@ -29,7 +30,7 @@ ON=${ANAME}-android
 GOOS=linux \
 GOARCH=arm64 \
 CGO_ENABLED=1 \
-CC="zig cc -target aarch64-linux-musl" \
+CC="${ZIG} -static -target aarch64-linux-musl" \
 go build -o output/${ON} -ldflags "-w -s" ./
 strip output/${ON}
 
@@ -40,14 +41,14 @@ ON=${ANAME}64.exe
 CGO_ENABLED=1 \
 GOOS=windows \
 GOARCH=amd64 \
-CC="zig cc -target x86_64-windows-gnu" \
+CC="${ZIG} -static -target x86_64-windows-gnu" \
 go build -o output/${ON} -ldflags "-w -s" ./
 
 ON=${ANAME}386.exe
 CGO_ENABLED=1 \
 GOOS=windows \
 GOARCH=386 \
-CC="zig cc -target i386-windows-gnu" \
+CC="${ZIG} -static -target i386-windows-gnu" \
 go build -o output/${ON} -ldflags "-w -s" ./
 
 # -------------------------------------------------------------
@@ -58,7 +59,7 @@ GOARM=5 \
 GOOS=linux \
 GOARCH=arm \
 CGO_ENABLED=1 \
-CC="zig cc -target arm-linux-musleabihf -march=arm1176jzf_s" \
+CC="${ZIG} -static -target arm-linux-musleabihf -march=arm1176jzf_s" \
 go build -o output/${ON} -ldflags "-w -s" ./
 strip output/${ON}
 
